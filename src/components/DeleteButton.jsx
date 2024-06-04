@@ -11,7 +11,7 @@ export const DeleteButton = ({ noteId, noteName, handleNewNotesValue }) => {
   };
 
   return (
-    <div className="btn-delete">
+    <div className="btn btn-delete">
       <button type="button" onClick={HandleDeleteButton}>
         Delete
       </button>

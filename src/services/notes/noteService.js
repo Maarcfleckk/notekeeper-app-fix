@@ -11,7 +11,7 @@ const createNote = ( newNote ) => {
                 description: newNote.description,
                 important: newNote.important,
                 status: newNote.status,
-                dueDate: newNote.dueDate
+                due_date: newNote.dueDate
             })
         }).then((response) => response.json());
 };

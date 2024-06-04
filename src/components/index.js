@@ -1,3 +1,4 @@
 export { Note } from "./Note";
 export { NoteList } from "./NoteList";
-import { DeleteButton } from "./DeleteButton";
+export { DeleteButton } from "./DeleteButton";
+export { CreateNoteForm } from "./CreateNoteForm";

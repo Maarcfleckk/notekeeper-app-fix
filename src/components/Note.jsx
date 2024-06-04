@@ -11,7 +11,7 @@ export const Note = ({ note, handleNewNotesValue }) => {
               {note?.important ? "Important" : "Not important"}
             </p>
             <p className="status">{note?.status}</p>
-            <p className="dueDate">{note?.dueDate}</p>
+            <p className="dueDate">{note?.due_date}</p>
           </div>
           <div className="actions">
             <button>Update</button>
