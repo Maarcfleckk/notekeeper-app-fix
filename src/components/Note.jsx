@@ -1,6 +1,5 @@
+import { DeleteButton } from "./DeleteButton";
 export const Note = ({ note, handleNewNotesValue }) => {
-  console.log("🚀 ~ Note ~ note:", note);
-
   return (
     <>
       <div className="note-item">
@@ -16,7 +15,11 @@ export const Note = ({ note, handleNewNotesValue }) => {
           </div>
           <div className="actions">
             <button>Update</button>
-            <button>Delete</button>
+            <DeleteButton
+              noteId={note?.id}
+              noteName={note?.name}
+              handleNewNotesValue={handleNewNotesValue}
+            />
           </div>
         </div>
       </div>

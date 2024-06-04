@@ -39,7 +39,7 @@ const updateNote = (updatedNote, noteId) => {
 const deleteNote = (noteId) => {
     return fetch (`${baseUrl}/notes/${noteId}`, {
         method: "Delete",
-    })
+    }).then((response) => response.json());
 }
 
 export default {createNote,  getNotes, updateNote, deleteNote};
