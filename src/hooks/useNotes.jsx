@@ -4,6 +4,18 @@ import noteService from "../services/notes/noteService";
 export const useNotes = () => {
   const [notes, setNotes] = useState([]);
 
+  const handleUpdateNotes = (updatedNote) => {
+    const noteIndex = notes.findIndex((note) => note.id === updatedNote.id);
+
+    if (noteIndex === -1) return;
+
+    const newNotes = [...notes];
+
+    newNotes[noteIndex] = updatedNote;
+
+    setNotes(newNotes);
+  };
+
   const handleNewNotesValue = (newNote) => {
     setNotes(newNote);
   };
@@ -19,5 +31,5 @@ export const useNotes = () => {
       });
   }, []);
 
-  return { notes, handleNewNotesValue };
+  return { notes, handleNewNotesValue, handleUpdateNotes };
 };

@@ -1,6 +1,11 @@
 import { DeleteButton } from "./DeleteButton";
-export const Note = ({ note, handleNewNotesValue }) => {
-  return (
+import { UpdateButton } from "./UpdateButton";
+import { useUpdatingNote } from "../hooks/useUpdatingNote";
+import { UpdateNoteForm } from "./UpdateNoteForm";
+export const Note = ({ note, handleNewNotesValue, handleUpdateNotes }) => {
+  const { updatingNote, handleUpdatingNoteChange } = useUpdatingNote(false);
+
+  return !updatingNote ? (
     <>
       <div className="note-item">
         <h3 className="note-title">{note?.name}</h3>
@@ -14,7 +19,10 @@ export const Note = ({ note, handleNewNotesValue }) => {
             <p className="dueDate">{note?.due_date}</p>
           </div>
           <div className="actions">
-            <button>Update</button>
+            <UpdateButton
+              updatingNote={updatingNote}
+              handleUpdatingNoteChange={handleUpdatingNoteChange}
+            />
             <DeleteButton
               noteId={note?.id}
               noteName={note?.name}
@@ -22,6 +30,18 @@ export const Note = ({ note, handleNewNotesValue }) => {
             />
           </div>
         </div>
+      </div>
+    </>
+  ) : (
+    <>
+      <div className="note-item-editing">
+        <h3 className="note-title">Editing: {note?.name}</h3>
+        <UpdateNoteForm
+          note={note}
+          handleUpdateNotes={handleUpdateNotes}
+          updatingNote={updatingNote}
+          handleUpdatingNoteChange={handleUpdatingNoteChange}
+        />
       </div>
     </>
   );

@@ -1,42 +1,22 @@
 import { useForm } from "../hooks/useForm";
 import noteService from "../services/notes/noteService";
 
-export const CreateNoteForm = ({ notes, handleNewNotesValue }) => {
-  const initialValues = {
-    name: "",
-    description: "",
-    important: false,
-    status: "",
-    dueDate: "",
-  };
-
-  const { formData, handleChange, resetForm } = useForm(initialValues);
+export const UpdateNoteForm = ({
+  note,
+  handleUpdateNotes,
+  updatingNote,
+  handleUpdatingNoteChange,
+}) => {
+  const date = new Date(note.due_date);
+  console.log("🚀 ~ note.due_date:", date);
+  //   const formattedDate = date.toLocaleDateString("es-ES");
+  const formattedDate = date.toISOString().split("T")[0];
+  console.log("🚀 ~ formattedDate:", formattedDate);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    const date = new Date(event.target.dueDate.value);
-    const formattedDate = date.toLocaleDateString("en-US");
-    console.log("🚀 ~ handleFormSubmit ~ formattedDate:", formattedDate);
-
-    const newNote = {
-      ...formData,
-      dueDate: formattedDate,
-    };
-    console.log("🚀 ~ handleFormSubmit ~ newNote:", newNote);
-
-    try {
-      noteService
-        .createNote(newNote)
-        .then((note) => handleNewNotesValue([...notes, note]));
-      resetForm();
-      event.target.name.value = "";
-      event.target.description.value = "";
-      event.target.status.value = "";
-      event.target.dueDate.value = "";
-    } catch (error) {
-      console.error("Error creating note:", error);
-    }
+    handleUpdatingNoteChange(!updatingNote);
   };
 
   return (
@@ -49,8 +29,7 @@ export const CreateNoteForm = ({ notes, handleNewNotesValue }) => {
               name="name"
               id="name"
               type="text"
-              value={formData?.name}
-              onChange={handleChange}
+              defaultValue={note.name}
               required
             />
           </label>
@@ -62,8 +41,7 @@ export const CreateNoteForm = ({ notes, handleNewNotesValue }) => {
               name="description"
               id="description"
               type="text"
-              value={formData?.description}
-              onChange={handleChange}
+              defaultValue={note.description}
               required
             />
           </label>
@@ -75,8 +53,7 @@ export const CreateNoteForm = ({ notes, handleNewNotesValue }) => {
               name="important"
               id="important"
               type="checkbox"
-              checked={formData?.important}
-              onChange={handleChange}
+              defaultChecked={note.important}
             />
           </label>
         </div>
@@ -86,8 +63,7 @@ export const CreateNoteForm = ({ notes, handleNewNotesValue }) => {
             <select
               name="status"
               id="status"
-              value={formData?.status}
-              onChange={handleChange}
+              defaultValue={note.status}
               required
             >
               <option value="">Select an option</option>
@@ -104,14 +80,13 @@ export const CreateNoteForm = ({ notes, handleNewNotesValue }) => {
               name="dueDate"
               id="dueDate"
               type="date"
-              value={formData?.dueDate}
-              onChange={handleChange}
+              defaultValue={formattedDate}
               required
             />
           </label>
         </div>
         <div className="form-group btn btn-submit">
-          <button type="submit">Add note</button>
+          <button type="submit">Update note</button>
         </div>
       </form>
     </div>

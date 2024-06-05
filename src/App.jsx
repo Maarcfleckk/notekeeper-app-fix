@@ -1,7 +1,7 @@
 import { NoteList, CreateNoteForm } from "./components";
 import { useNotes } from "./hooks/useNotes";
 function App() {
-  const { notes, handleNewNotesValue } = useNotes();
+  const { notes, handleNewNotesValue, handleUpdateNotes } = useNotes();
 
   return (
     <div className="App">
@@ -12,7 +12,11 @@ function App() {
         />
       </div>
       <div className="note-list-container">
-        <NoteList notes={notes} handleNewNotesValue={handleNewNotesValue} />
+        <NoteList
+          notes={notes}
+          handleNewNotesValue={handleNewNotesValue}
+          handleUpdateNotes={handleUpdateNotes}
+        />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { Note } from "./Note";
 
-export const NoteList = ({ notes, handleNewNotesValue }) => {
+export const NoteList = ({ notes, handleNewNotesValue, handleUpdateNotes }) => {
   return (
     <>
       <div className="note-list">
@@ -9,7 +9,11 @@ export const NoteList = ({ notes, handleNewNotesValue }) => {
           {notes.length > 0 ? (
             notes.map((note, i) => (
               <li key={i}>
-                <Note note={note} handleNewNotesValue={handleNewNotesValue} />
+                <Note
+                  note={note}
+                  handleNewNotesValue={handleNewNotesValue}
+                  handleUpdateNotes={handleUpdateNotes}
+                />
               </li>
             ))
           ) : (
