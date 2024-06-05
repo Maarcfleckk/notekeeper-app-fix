@@ -1,50 +1,94 @@
+import { useForm } from "../hooks/useForm";
 import noteService from "../services/notes/noteService";
 
 export const CreateNoteForm = ({ notes, handleNewNotesValue }) => {
-  const addNewNote = (event) => {
+  const initialValues = {
+    name: "",
+    description: "",
+    important: false,
+    status: "",
+    dueDate: "",
+  };
+
+  const { formData, handleChange, resetForm } = useForm(initialValues);
+
+  const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    const date = new Date(event.target.DueDate.value);
+    const date = new Date(event.target.dueDate.value);
     const formattedDate = date.toLocaleDateString("en-GB");
 
     const newNote = {
-      name: event.target.Name.value,
-      description: event.target.Description.value,
-      important: event.target.Important.checked,
-      status: event.target.Status.value,
+      ...formData,
       dueDate: formattedDate,
     };
+    console.log("🚀 ~ handleFormSubmit ~ newNote:", newNote);
 
-    noteService
-      .createNote(newNote)
-      .then((note) => handleNewNotesValue([...notes, note]));
+    try {
+      noteService
+        .createNote(newNote)
+        .then((note) => handleNewNotesValue([...notes, note]));
+      resetForm();
+      event.target.name.value = "";
+      event.target.description.value = "";
+      event.target.status.value = "";
+      event.target.dueDate.value = "";
+    } catch (error) {
+      console.error("Error creating note:", error);
+    }
   };
 
   return (
     <div className="create-note-form">
-      <form onSubmit={addNewNote}>
+      <form onSubmit={handleFormSubmit}>
         <div className="form-group">
-          <label htmlFor="Name">
+          <label htmlFor="name">
             Name:
-            <input name="Name" id="Name" type="text" required />
+            <input
+              name="name"
+              id="name"
+              type="text"
+              value={formData?.name}
+              onChange={handleChange}
+              required
+            />
           </label>
         </div>
         <div className="form-group">
-          <label htmlFor="Description">
+          <label htmlFor="description">
             Description:
-            <input name="Description" id="Description" type="text" required />
+            <input
+              name="description"
+              id="description"
+              type="text"
+              value={formData?.description}
+              onChange={handleChange}
+              required
+            />
           </label>
         </div>
         <div className="form-group">
-          <label htmlFor="Important">
+          <label htmlFor="important">
             Important:
-            <input name="Important" id="Important" type="checkbox" />
+            <input
+              name="important"
+              id="important"
+              type="checkbox"
+              checked={formData?.important}
+              onChange={handleChange}
+            />
           </label>
         </div>
         <div className="form-group">
-          <label htmlFor="Status">
+          <label htmlFor="status">
             Status:
-            <select name="Status" id="Status" required>
+            <select
+              name="status"
+              id="status"
+              value={formData?.status}
+              onChange={handleChange}
+              required
+            >
               <option value="">Select an option</option>
               <option value="done">Done</option>
               <option value="in progress">In progress</option>
@@ -53,9 +97,16 @@ export const CreateNoteForm = ({ notes, handleNewNotesValue }) => {
           </label>
         </div>
         <div className="form-group">
-          <label htmlFor="DueDate">
+          <label htmlFor="dueDate">
             Due date:
-            <input name="DueDate" id="DueDate" type="date" required />
+            <input
+              name="dueDate"
+              id="dueDate"
+              type="date"
+              value={formData?.dueDate}
+              onChange={handleChange}
+              required
+            />
           </label>
         </div>
         <div className="form-group btn btn-submit">
