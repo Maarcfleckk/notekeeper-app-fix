@@ -6,10 +6,7 @@ export const UpdateNoteForm = ({
   updatingNote,
   handleUpdatingNoteChange,
 }) => {
-  console.log("nota", note);
-
   const formatDateInput = (date) => {
-    console.log("🚀 ~ formatDateInput ~ date:", date);
     const [day, month, year] = date.split("/");
     const formattedDate = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     return formattedDate;
@@ -33,7 +30,6 @@ export const UpdateNoteForm = ({
       status: event.target.updated_status.value,
       dueDate: formatDate(event.target.updated_dueDate.value),
     };
-    console.log("🚀 ~ handleFormSubmit ~ noteToUpdate:", noteToUpdate);
 
     noteService
       .updateNote(noteToUpdate, noteToUpdateId)
