@@ -3,6 +3,7 @@ import noteService from "../services/notes/noteService";
 
 export const useNotes = () => {
   const [notes, setNotes] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleUpdateNotes = (updatedNote) => {
     const noteIndex = notes.findIndex((note) => note.id === updatedNote.id);
@@ -20,7 +21,12 @@ export const useNotes = () => {
     setNotes(newNote);
   };
 
+  const handleLoadingValue = (newValue) => {
+    setLoading(newValue);
+  };
+
   useEffect(() => {
+    handleLoadingValue(true);
     noteService
       .getNotes()
       .then((data) => {
@@ -28,8 +34,9 @@ export const useNotes = () => {
       })
       .catch((error) => {
         alert(`ERROR: ${error}`);
-      });
+      })
+      .finally(setLoading(false));
   }, []);
 
-  return { notes, handleNewNotesValue, handleUpdateNotes };
+  return { notes, handleNewNotesValue, handleUpdateNotes, loading };
 };

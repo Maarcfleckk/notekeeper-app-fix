@@ -12,18 +12,20 @@ export const CreateNoteForm = ({ notes, handleNewNotesValue }) => {
 
   const { formData, handleChange, resetForm } = useForm(initialValues);
 
+  const formatDate = (date) => {
+    const newDate = new Date(date);
+    const formattedDate = newDate.toLocaleDateString("en-US");
+
+    return formattedDate;
+  };
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    const date = new Date(event.target.dueDate.value);
-    const formattedDate = date.toLocaleDateString("en-US");
-    console.log("🚀 ~ handleFormSubmit ~ formattedDate:", formattedDate);
-
     const newNote = {
       ...formData,
-      dueDate: formattedDate,
+      dueDate: formatDate(event.target.dueDate.value),
     };
-    console.log("🚀 ~ handleFormSubmit ~ newNote:", newNote);
 
     try {
       noteService

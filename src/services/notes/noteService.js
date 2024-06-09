@@ -31,9 +31,10 @@ const updateNote = (updatedNote, noteId) => {
                 description: updatedNote.description,
                 important: updatedNote.important,
                 status: updatedNote.status,
-                dueDate: updatedNote.dueDate,
+                due_date: updatedNote.dueDate,
             })
-        })
+        }).then((response) => response.json())
+        .catch((error) => console.log("🚀 ~ }).then ~ error:", error))
 }
 
 const deleteNote = (noteId) => {
