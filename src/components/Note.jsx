@@ -34,7 +34,7 @@ export const Note = ({ note, handleNewNotesValue, handleUpdateNotes }) => {
     </>
   ) : (
     <>
-      <div className="note-item-editing">
+      <div className="note-item editing">
         <h3 className="note-title">Editing: {note?.name}</h3>
         <UpdateNoteForm
           note={note}

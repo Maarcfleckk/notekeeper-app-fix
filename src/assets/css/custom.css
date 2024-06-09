@@ -1,0 +1,68 @@
+/* <===COLORS===> */
+:root {
+    --deep-black: #121212;
+    --dark-gray: #1E1E1E;
+    --charcoal-gray: #333333;
+    --gray: #2C2C2C;
+    --light-gray: #CCCCCC;
+    --dark-blue: #0A3D62;
+    --deep-purple: #311B92;
+    --dark-green: #004D40;
+    --dark-red: #B71C1C;
+    --dark-orange: #E65100;
+    --mustard-yellow: #FBC02D;
+}  
+/* <===GENERAL STYLES===> */
+*{ box-sizing: border-box; }
+body{ padding: 0; margin: 0; background-color: var(--charcoal-gray); }
+h1, h2, h3, h4, h5, h6, p, span, label{font-family: 'Roboto', sans-serif; color: #fff;}
+h1, h2, h3, h4, h5, h6{ margin: 0 0 15px 0;}
+h1{ font-size: 36px;}
+h2{ font-size: 30px;}
+h3{ font-size: 24px;}
+p{ font-size: 16px;}
+.note-container{padding: 0 15px;}
+
+/* <===HEADER==> */
+.header{background-color: var(--dark-gray); display: flex; justify-content: center; margin-bottom: 15px;}
+.header h1{margin: 10px 0;}
+
+/* <===Note Form===> */
+.create-note-form-container{background-color: var(--dark-gray); padding: 15px; border-radius: 5px; margin-bottom: 15px; width: 300px;}
+.create-note-form{background-color: var(--charcoal-gray); padding: 15px; border-radius: 5px;}
+.create-note-form .form-group{display: flex; flex-direction: column; margin-bottom: 10px;}
+.create-note-form .form-group label{margin-bottom: 5px;}
+.create-note-form .form-group input,.create-note-form .form-group select, .create-note-form .form-group textarea{border: unset; border-radius: 5px; background-color: var(--dark-gray); height: 30px; color: #fff; padding: 5px; font-size: 16px;}
+.create-note-form .form-group:nth-child(3){display: block;}
+.create-note-form .form-group input[type="checkbox"]{height: 15px; width: 15px;}
+.create-note-form .form-group textarea{height: 100px;}
+.create-note-form .btn.btn-create button{display: flex; gap: 5px;}
+
+/* <===Note List===> */
+.note-list {overflow-x: scroll;}
+.note-list ul{list-style: none; padding: 0; margin: 0; display: flex; flex-direction: row; gap: 15px;}
+.note-item{ min-width: 300px; background-color: var(--dark-gray); border-radius: 5px; padding: 15px;}
+.note-item .note-title{display: flex; flex-direction: row; justify-content: space-between;}
+.note-item .note-title .important-icon{width: 25px; height: auto;}
+.note-item .content{ background-color: var(--charcoal-gray); padding: 10px; border-radius: 5px;}
+.note-item .content p{margin: 0; margin-bottom: 15px;}
+.note-item .content .additional-info .status{text-transform: capitalize;}
+.note-item .content .additional-info .dueDate{display: flex; flex-direction: row; justify-content: start; gap: 5px;}
+.note-item .content .additional-info .dueDate-icon{width: 16px; height: auto;}
+.note-item .content .additional-info .dueDate-icon{width: 16px; height: auto;}
+.note-item .content .actions{display: flex; flex-direction: row; justify-content: space-between;}
+.btn button{border: unset; border-radius: 5px; color: #fff; background-color: var(--dark-gray); padding: 10px 20px;}
+.btn.btn-update button{display: flex; gap: 5px;}
+.delete-icon, .update-icon, .save-icon{width: 16px; height: auto;}
+
+.note-item.editing{background-color: var(--light-gray);}
+.note-item.editing .note-title, .note-item.editing .note-title span{color: #000;}
+
+.update-note-form{background-color: var(--charcoal-gray); padding: 15px; border-radius: 5px;}
+.update-note-form .form-group{display: flex; flex-direction: column; margin-bottom: 10px;}
+.update-note-form .form-group label{margin-bottom: 5px;}
+.update-note-form .form-group input,.update-note-form .form-group select, .update-note-form .form-group textarea{border: unset; border-radius: 5px; background-color: var(--dark-gray); height: 30px; color: #fff; padding: 5px; font-size: 16px;}
+.update-note-form .form-group:nth-child(3){display: block;}
+.update-note-form .form-group input[type="checkbox"]{height: 15px; width: 15px;}
+.update-note-form .form-group textarea{height: 100px;}
+.update-note-form .btn.btn-create button{display: flex; gap: 5px;}
