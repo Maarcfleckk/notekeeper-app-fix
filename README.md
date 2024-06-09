@@ -47,3 +47,8 @@ By utilizing AI assistants responsibly and ensuring that all generated code is c
 ### Deadline
 
 🗓️ Friday the 24th of May
+
+### NETLIFY & RENDER
+
+[Netlify link](https://notekeeper-app-fix-marc.netlify.app)
+[Render Api](https://notekeeper-api-vzq9.onrender.com)
