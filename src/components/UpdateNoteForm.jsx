@@ -39,7 +39,7 @@ export const UpdateNoteForm = ({
   };
 
   return (
-    <div className="create-note-form">
+    <div className="update-note-form">
       <form onSubmit={handleFormSubmit}>
         <input type="hidden" name="id" value={note.id} />
         <div className="form-group">

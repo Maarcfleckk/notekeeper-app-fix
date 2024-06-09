@@ -1,5 +1,6 @@
 import { NoteList, CreateNoteForm } from "./components";
 import { useNotes } from "./hooks/useNotes";
+import "../src/assets/css/custom.css";
 function App() {
   const { notes, handleNewNotesValue, handleUpdateNotes, loading } = useNotes();
 
